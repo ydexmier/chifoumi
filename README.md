@@ -1,5 +1,6 @@
-# Introduction
-This is the a quick starter project made and used by Benjamin Code to quickly experiment stuffs when he's trying to replicate cool effects he sees on the web.
+# The project
+
+This is a challenge provided by [frontendmentor.io](https://www.frontendmentor.io/challenges/rock-paper-scissors-game-pTgwgvgH) (free).
 
 
 # Installation
@@ -18,13 +19,9 @@ That is almost everything you need to know.
 If you have run : `npm run start`, parcels has an excellent hot reload except if you are on another page than index.html. There is a bug with parcels that requires you to manually refresh the page when you are not working on `index.html`.
 
 
-# The project
-
-This is a challenge provided by [frontendmentor.io](https://www.frontendmentor.io/challenges/rock-paper-scissors-game-pTgwgvgH) (free).
-
 # Thanks to Benjamin Code for the starter kit project
 
-(The starter kit)[https://github.com/bdebon/quick-parcel-project]
+[The starter kit](https://github.com/bdebon/quick-parcel-project)
 
 https://benjamincode.tv
 
