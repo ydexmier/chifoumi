@@ -18,25 +18,13 @@ That is almost everything you need to know.
 If you have run : `npm run start`, parcels has an excellent hot reload except if you are on another page than index.html. There is a bug with parcels that requires you to manually refresh the page when you are not working on `index.html`.
 
 
-# Rollback to parcel v1
-I use this quick start kit to quickly launch new project for my livestreams on Twitch. At the end, the goal is to publish on codesandbox the result.
+# The project
 
-Unfortunately, parcel v2 is not well handled by codesandbox. When rolling back, I also had to remove the posthtlm feature which where buggy.
-Finally it is a very basing project where scss and typescript works out of the box but don't expect to do something really fancy with posthtml.
-For a bigger project with parcel v2 and many good features, use the main branch.
+This is a challenge provided by [frontendmentor.io](https://www.frontendmentor.io/challenges/rock-paper-scissors-game-pTgwgvgH) (free).
 
-# Alias to quickly upload the code on Codesandbox
-You must install codesandbox command line on your computer. Then add this alias to your `.zshrc`:
+# Thanks to Benjamin Code for the starter kit project
 
-```
-alias share_code='rm -rf dist .cache && codesandbox ./'
-```
-
-# Benjamin Code
-
-It's also the project he uses for his Twitch livestreams.
-
-A real project was made with this quick starter:
+(The starter kit)[https://github.com/bdebon/quick-parcel-project]
 
 https://benjamincode.tv
 
