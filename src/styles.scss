@@ -21,97 +21,163 @@ body {
   color: $text-color;
 
   .container {
-    width: 700px;
+    width: 315px;
     margin: 46px auto 0 auto;
-    .header {
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 8px 10px 32px;
+    border: solid 3px $header-outlined;
+    border-radius: 9px;
+    .actions {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 24px 22px 22px 32px;
-      border: solid 3px $header-outlined;
-      border-radius: 9px;
-      .actions {
-        display: flex;
-        flex-direction: column;
-        color: white;
-        font-size: 36px;
-      }
-      .score {
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        padding: 20px 50px;
-        background: white;
-        border-radius: 6px;
-
-
-        .label {
-          color: $score-color;
-        }
-        .number {
-          font-size: 46px;
-        }
+      flex-direction: column;
+      color: white;
+      font-size: 8px; //36
+      img {
+        height: 48px;
       }
     }
+    .score {
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      background: white;
+      border-radius: 6px;
 
-    .action {
-      position: relative;
-      width: 200px;
-      height: 200px;
 
-      .action-border {
-        width: 100%;
-        height:100%;
-        border-radius: 50%; 
+      .label {
+        color: $score-color;
+        margin-bottom: 10px;
       }
-      .action-content {
-        position: absolute;
-        display: flex;
-        justify-content: center;
-        margin-top: 24px;
-        margin-left: 24px;
-        width: calc(100% - 48px);
-        height: calc(100% - 48px);
-        border-radius: 50%;
-      }
-      &.paper {
-        .action-border {
-          background:  $paper;
-          box-shadow: 0 9px #2747C2;
-        }
-        .action-content {
-          background-color: white;
-          box-shadow: inset 0 9px #B8BDD1;
-        }
-      }
-
-      &.rock {
-        .action-border {
-          background:  $rock;
-          box-shadow: 0 9px #9D1634;
-        }
-        .action-content {
-          background-color: white;
-          box-shadow: inset 0 9px #B8BDD1;
-        }
-      }
-
-      &.scissors {
-        .action-border {
-          background:  $scissors;
-          box-shadow: 0 9px #C76C1D;
-        }
-        .action-content {
-          background-color: white;
-          box-shadow: inset 0 9px #B8BDD1;
-        }
-      }
-    
-      img {
-        margin: auto;
-        width: 65px;
+      .number {
+        font-size: 28px; //46
       }
     }
   }
+
+  .step-1 {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-top: 80px;
+    background-position: 68px 68px;
   
+      .bg-triangle {
+        position: absolute;
+        width: calc(100% - 126px);
+        left: 68px;
+        top: 68px;
+      }
+
+    .first-line {
+      display: flex;
+      justify-content: space-between;
+    }
+    .second-line {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  .action {
+    position: relative;
+    width: 126px;
+    height: 126px;
+    transition: transform 0.3s;
+    cursor: pointer;
+    img {
+      margin: auto;
+      width: 40%;
+    }
+
+    .action-border {
+      width: 100%;
+      height:100%;
+      border-radius: 50%; 
+    }
+    .action-content {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      margin-top: 12.5%;
+      margin-left: 12.5%;
+      width: 75%;
+      height: 75%;
+      border-radius: 50%;
+      background-color: #DCDCDC;
+      box-shadow: inset 0 8px #B8BDD1;
+
+    }
+    &.paper {
+      .action-border {
+        background:  $paper;
+        box-shadow: 0 9px #2747C2;
+      }
+    }
+
+    &.rock {
+      .action-border {
+        background:  $rock;
+        box-shadow: 0 8px #9D1634;
+      }
+    }
+
+    &.scissors {
+      .action-border {
+        box-shadow: 0 9px #C76C1D;
+        background:  $scissors;
+      }
+    }
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}
+
+@media (min-width: 760px) {
+  body {
+    .container {
+      width: 700px;
+      margin: 46px auto 0 auto;
+    }
+    .header {
+      .actions {
+        font-size: 36px;
+        img {
+          height: 96px;
+        }
+      }
+      .score {
+        padding: 20px 46px;
+        .label {
+          font-size: 12px;
+        }
+        .number {
+          font-size: 48px;
+          line-height: 48px;
+        }
+      }
+    }
+    .action {
+      width: 180px;
+      height: 180px;
+    }
+    .step-1 {
+      margin: 60px auto 0 auto;
+      width: 480px;
+
+      .first-line {
+        margin-bottom: 11px;
+      }
+      .second-line {
+        margin-top: 11px;
+      }
+    }
+  }
 }
