@@ -1,0 +1,33 @@
+$text-color: hsl(229, 25%, 31%);
+$score-color: hsl(229, 64%, 46%);
+$header-outlined: hsl(217, 16%, 45%);
+$cyan: linear-gradient(hsl(189, 59%, 53%), hsl(189, 58%, 57%));
+$scissors: linear-gradient(hsl(39, 89%, 49%), hsl(40, 84%, 53%));
+$paper: linear-gradient(hsl(230, 89%, 62%), hsl(230, 89%, 65%));
+$rock: linear-gradient(hsl(349, 71%, 52%), hsl(349, 70%, 56%));
+$lizard: linear-gradient(hsl(261, 73%, 60%), hsl(261, 72%, 63%));
+
+$sm-bubble-size: 126;
+$bg-bubble-size: 180;
+$sm-size: 315;
+$bg-size: 500;
+
+@function sqrt($r) {
+  $x0: 1;
+  $x1: $x0;
+ 
+  @for $i from 1 through 10 {
+    $x1: $x0 - ($x0 * $x0 - abs($r)) / (2 * $x0);
+    $x0: $x1;
+  }
+ 
+  @return $x1;
+}
+
+@function triangleLength($bubbleSize, $containerSize) {
+  @return $containerSize - $bubbleSize;
+}
+@function heightTriangle($hypo) {
+  $adj: $hypo / 2;
+ @return sqrt($hypo * $hypo - $adj*$adj);
+}

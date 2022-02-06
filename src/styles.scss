@@ -1,18 +1,11 @@
 @import 'scss/reset';
 @import 'scss/base';
+@import 'scss/variables';
+@import 'scss/bubble';
 
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&display=swap');
 
 // breakpoint - Mobile: 375px - Desktop: 1366px
-
-$text-color: hsl(229, 25%, 31%);
-$score-color: hsl(229, 64%, 46%);
-$header-outlined: hsl(217, 16%, 45%);
-$cyan: linear-gradient(hsl(189, 59%, 53%), hsl(189, 58%, 57%));
-$scissors: linear-gradient(hsl(39, 89%, 49%), hsl(40, 84%, 53%));
-$paper: linear-gradient(hsl(230, 89%, 62%), hsl(230, 89%, 65%));
-$rock: linear-gradient(hsl(349, 71%, 52%), hsl(349, 70%, 56%));
-$lizard: linear-gradient(hsl(261, 73%, 60%), hsl(261, 72%, 63%));
 
 body {
   font-family: 'Barlow Semi Condensed', sans-serif;
@@ -60,82 +53,38 @@ body {
     }
   }
 
-  .step-1 {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    margin-top: 80px;
-    background-position: 68px 68px;
-  
-      .bg-triangle {
-        position: absolute;
-        width: calc(100% - 126px);
-        left: 68px;
-        top: 68px;
+  #stepContainer {
+    $triangleLength: $sm-size - $sm-bubble-size;
+    $heightTriangle: heightTriangle($triangleLength);
+
+    &.step-1 {
+      position: relative;
+      margin-top: 80px;
+      background-position: 68px 68px;
+
+      .bubble {
+        left: calc(50% - #{$sm-bubble-size/2}px);
+        top: calc($heightTriangle/3)+px;
       }
-
-    .first-line {
-      display: flex;
-      justify-content: space-between;
-    }
-    .second-line {
-      display: flex;
-      justify-content: center;
-    }
-  }
-
-  .action {
-    position: relative;
-    width: 126px;
-    height: 126px;
-    transition: transform 0.3s;
-    cursor: pointer;
-    img {
-      margin: auto;
-      width: 40%;
-    }
-
-    .action-border {
-      width: 100%;
-      height:100%;
-      border-radius: 50%; 
-    }
-    .action-content {
-      position: absolute;
-      display: flex;
-      justify-content: center;
-      margin-top: 12.5%;
-      margin-left: 12.5%;
-      width: 75%;
-      height: 75%;
-      border-radius: 50%;
-      background-color: #DCDCDC;
-      box-shadow: inset 0 8px #B8BDD1;
-
-    }
-    &.paper {
-      .action-border {
-        background:  $paper;
-        box-shadow: 0 9px #2747C2;
+      &:not(.end-step1) {
+        .paper {
+          transform: translate(-$triangleLength/2+px, -($heightTriangle/3)+px);
+        }
+        .rock  {
+          transform: translate($triangleLength/2+px,-($heightTriangle/3)+px);
+        }
+        .scissors {
+          transform: translate(0,($heightTriangle/3)*2+px);
+        }
       }
     }
 
-    &.rock {
-      .action-border {
-        background:  $rock;
-        box-shadow: 0 8px #9D1634;
+    &.end-step1 {
+      .paper, .scissors, .rock {
+        &.selected {
+          z-index: 10;
+        }
       }
-    }
-
-    &.scissors {
-      .action-border {
-        box-shadow: 0 9px #C76C1D;
-        background:  $scissors;
-      }
-    }
-
-    &:hover {
-      transform: scale(1.1);
     }
   }
 }
@@ -164,19 +113,38 @@ body {
         }
       }
     }
-    .action {
-      width: 180px;
-      height: 180px;
-    }
-    .step-1 {
-      margin: 60px auto 0 auto;
-      width: 480px;
 
-      .first-line {
-        margin-bottom: 11px;
-      }
-      .second-line {
-        margin-top: 11px;
+    #stepContainer {
+      $triangleLength: $bg-size - $bg-bubble-size;
+      $heightTriangle: heightTriangle($triangleLength);
+      &.step-1 {
+        margin: 60px auto 0 auto;
+        width: $bg-size;
+        
+        .bubble {
+          left: calc(50% - #{$bg-bubble-size/2}px);
+          top: calc(heightTriangle($triangleLength)/3)+px;
+          width:$bg-bubble-size + px;
+          height: $bg-bubble-size + px;
+
+          &:hover {
+            transform: scale(1.1);
+          }
+        }
+
+        &:not(.end-step1) {
+          .paper {
+            transform: translate(-$triangleLength/2+px, -($heightTriangle/3)+px);
+          }
+      
+          .rock {
+            transform: translate($triangleLength/2+px,-($heightTriangle/3)+px);
+          }
+      
+          .scissors {
+            transform: translate(0,($heightTriangle/3)*2+px);
+          }
+        }
       }
     }
   }
