@@ -48,4 +48,11 @@
         background:  $scissors;
       }
     }
+
+    &.ghost {
+      .bubble-content {
+        background: #151E3D;
+        box-shadow: none;
+      }
+    }
   }

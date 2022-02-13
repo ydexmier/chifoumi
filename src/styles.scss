@@ -10,8 +10,9 @@
 body {
   font-family: 'Barlow Semi Condensed', sans-serif;
   width: 100vw;
-  background: linear-gradient(hsl(214, 47%, 23%), hsl(237, 49%, 15%));
+  background: linear-gradient(90deg,hsl(237, 49%, 15%),hsl(214, 47%, 23%), hsl(237, 49%, 15%));
   color: $text-color;
+  letter-spacing: 2px;
 
   .container {
     width: 315px;
@@ -52,14 +53,21 @@ body {
       }
     }
   }
+  .picked-choice {
+    display: none;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+  }
 
   #stepContainer {
+    position: relative;
+    margin-top: 80px;
+
     $triangleLength: $sm-size - $sm-bubble-size;
     $heightTriangle: heightTriangle($triangleLength);
 
     &.step-1 {
-      position: relative;
-      margin-top: 80px;
       background-position: 68px 68px;
 
       .bubble {
@@ -77,6 +85,9 @@ body {
           transform: translate(0,($heightTriangle/3)*2+px);
         }
       }
+      .bubble.ghost {
+        display: none;
+      }
     }
 
     &.end-step1 {
@@ -84,6 +95,44 @@ body {
         &.selected {
           z-index: 10;
         }
+      }
+    }
+
+    &.step-2 {
+      
+      display: grid;
+      row-gap: 24px;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr auto;
+      .bubble:not(.selected) {
+        display: none;
+      }
+
+      .bubble.selected {
+        position: relative;
+        justify-self: center;
+        grid-row: 1;
+        grid-column: 1;
+        left: 0;
+      }
+      .picked-choice {
+        display: block;
+
+        &:nth-child(1) {
+          grid-row: 2/3;
+          grid-column: 1;
+        }
+
+        &:nth-child(2) {
+          grid-row: 2/3;
+          grid-column: 2/3;
+        }
+      }
+      .bubble.ghost {
+        display: block;
+        justify-self: center;
+        grid-row: 1;
+        grid-column: 2/3;
       }
     }
   }
@@ -117,6 +166,11 @@ body {
     #stepContainer {
       $triangleLength: $bg-size - $bg-bubble-size;
       $heightTriangle: heightTriangle($triangleLength);
+
+      .bubble {
+        width: $bg-bubble-size + px;
+        height: $bg-bubble-size + px;
+      }
       &.step-1 {
         margin: 60px auto 0 auto;
         width: $bg-size;
@@ -124,26 +178,59 @@ body {
         .bubble {
           left: calc(50% - #{$bg-bubble-size/2}px);
           top: calc(heightTriangle($triangleLength)/3)+px;
-          width:$bg-bubble-size + px;
-          height: $bg-bubble-size + px;
-
-          &:hover {
-            transform: scale(1.1);
-          }
         }
 
         &:not(.end-step1) {
           .paper {
             transform: translate(-$triangleLength/2+px, -($heightTriangle/3)+px);
+            &:hover {
+              transform: translate(-$triangleLength/2+px, -($heightTriangle/3)+px) scale(1.1);
+            }
           }
       
           .rock {
             transform: translate($triangleLength/2+px,-($heightTriangle/3)+px);
+            &:hover {
+              transform: translate($triangleLength/2+px,-($heightTriangle/3)+px) scale(1.1);
+            }
           }
       
           .scissors {
             transform: translate(0,($heightTriangle/3)*2+px);
+            &:hover {
+              transform: translate(0,($heightTriangle/3)*2+px) scale(1.1);
+            }
           }
+        }
+      }
+
+      &.step-2 {
+        row-gap: 65px;
+        .bubble {
+          width: $bg-bubble-size-step-2;
+          height: $bg-bubble-size-step-2;
+        }
+        .bubble.selected {
+          grid-row: 2/3;
+          grid-column: 1;
+          left: 0;
+        }
+        .picked-choice {
+          font-size: 24px;
+
+          &:nth-child(1) {
+            grid-row: 1;
+            grid-column: 1;
+          }
+  
+          &:nth-child(2) {
+            grid-row: 1;
+            grid-column: 2/3;
+          }
+        }
+        .bubble.ghost {
+          grid-row: 2/3;
+          grid-column: 2/3;
         }
       }
     }
