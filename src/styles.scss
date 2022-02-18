@@ -59,6 +59,9 @@ body {
     color: white;
     text-align: center;
   }
+  #result {
+    display: none;
+  }
 
   #stepContainer {
     position: relative;
@@ -71,21 +74,21 @@ body {
       background-position: 68px 68px;
 
       .bubble {
-        left: calc(50% - #{$sm-bubble-size/2}px);
+        left: calc(50% - #{calc($sm-bubble-size/2)}px);
         top: calc($heightTriangle/3)+px;
       }
       &:not(.end-step1) {
         .paper {
-          transform: translate(-$triangleLength/2+px, -($heightTriangle/3)+px);
+          transform: translate(- calc($triangleLength/2)+px, - calc($heightTriangle/3)+px);
         }
         .rock  {
-          transform: translate($triangleLength/2+px,-($heightTriangle/3)+px);
+          transform: translate(calc($triangleLength/2)+px,- calc($heightTriangle/3)+px);
         }
         .scissors {
-          transform: translate(0,($heightTriangle/3)*2+px);
+          transform: translate(0,calc($heightTriangle/3*2)+px);
         }
       }
-      .bubble.ghost {
+      #bot {
         display: none;
       }
     }
@@ -98,12 +101,11 @@ body {
       }
     }
 
-    &.step-2 {
-      
+    &.step-2, &.step-3 {
       display: grid;
       row-gap: 24px;
       grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr auto;
+      grid-template-rows: 1fr auto auto;
       .bubble:not(.selected) {
         display: none;
       }
@@ -114,6 +116,12 @@ body {
         grid-row: 1;
         grid-column: 1;
         left: 0;
+      }
+      #bot {
+        display: block;
+        justify-self: center;
+        grid-row: 1;
+        grid-column: 2/3;
       }
       .picked-choice {
         display: block;
@@ -128,11 +136,23 @@ body {
           grid-column: 2/3;
         }
       }
-      .bubble.ghost {
+    }
+
+    &.step-3 {
+      #result {
+        grid-row: 3/4;
+        grid-column: 1/3;
         display: block;
-        justify-self: center;
-        grid-row: 1;
-        grid-column: 2/3;
+      }
+      &:not(.win) {
+        #win {
+          display: none;
+        }
+      }
+      &:not(.lose) {
+        #lose {
+          display: none;
+        }
       }
     }
   }
@@ -176,29 +196,29 @@ body {
         width: $bg-size;
         
         .bubble {
-          left: calc(50% - #{$bg-bubble-size/2}px);
+          left: calc(50% - #{calc($bg-bubble-size/2)}px);
           top: calc(heightTriangle($triangleLength)/3)+px;
         }
 
         &:not(.end-step1) {
           .paper {
-            transform: translate(-$triangleLength/2+px, -($heightTriangle/3)+px);
+            transform: translate(- calc($triangleLength/2)+px, - calc($heightTriangle/3)+px);
             &:hover {
-              transform: translate(-$triangleLength/2+px, -($heightTriangle/3)+px) scale(1.1);
+              transform: translate(- calc($triangleLength/2)+px, - calc($heightTriangle/3)+px) scale(1.1);
             }
           }
       
           .rock {
-            transform: translate($triangleLength/2+px,-($heightTriangle/3)+px);
+            transform: translate(calc($triangleLength/2)+px,- calc($heightTriangle/3)+px);
             &:hover {
-              transform: translate($triangleLength/2+px,-($heightTriangle/3)+px) scale(1.1);
+              transform: translate(calc($triangleLength/2)+px,- calc($heightTriangle/3)+px) scale(1.1);
             }
           }
       
           .scissors {
-            transform: translate(0,($heightTriangle/3)*2+px);
+            transform: translate(0,calc($heightTriangle/3)*2+px);
             &:hover {
-              transform: translate(0,($heightTriangle/3)*2+px) scale(1.1);
+              transform: translate(0,calc($heightTriangle/3)*2+px) scale(1.1);
             }
           }
         }
@@ -228,7 +248,7 @@ body {
             grid-column: 2/3;
           }
         }
-        .bubble.ghost {
+        #bot {
           grid-row: 2/3;
           grid-column: 2/3;
         }

@@ -18,7 +18,7 @@ $bg-size: 500;
   $x1: $x0;
  
   @for $i from 1 through 10 {
-    $x1: $x0 - ($x0 * $x0 - abs($r)) / (2 * $x0);
+    $x1: calc($x0 - ($x0 * $x0 - abs($r)) / (2 * $x0));
     $x0: $x1;
   }
  
@@ -29,6 +29,6 @@ $bg-size: 500;
   @return $containerSize - $bubbleSize;
 }
 @function heightTriangle($hypo) {
-  $adj: $hypo / 2;
+  $adj: calc($hypo / 2);
  @return sqrt($hypo * $hypo - $adj*$adj);
 }

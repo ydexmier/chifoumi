@@ -45,7 +45,7 @@
             </div>
             <div class="score">
                 <div class="label">SCORE</div>
-                <div class="number">12</div>
+                <div id="score" class="number">0</div>
             </div>
         </div>
         <div id="stepContainer" class="step-1">
@@ -54,27 +54,31 @@
             <div id="paper" class="bubble paper">
                 <div class="bubble-border">
                     <div class="bubble-content">
-                        <img src="./assets/img/icon-paper.svg" />
                     </div>
                 </div>   
             </div>
             <div id="rock" class="bubble rock">
                 <div class="bubble-border">
                     <div class="bubble-content">
-                        <img src="./assets/img/icon-rock.svg" />
                     </div>
                 </div>   
             </div>
             <div id="scissors" class="bubble scissors">
                 <div class="bubble-border">
                     <div class="bubble-content">
-                        <img src="./assets/img/icon-scissors.svg" />
                     </div>
                 </div>   
             </div>
-            <div class="bubble ghost">
+            <div id="bot" class="bubble ghost">
+                <div class="bubble-border">
                     <div class="bubble-content">
-                    </div> 
+                    </div>
+                </div>  
+            </div>
+            <div id="result">
+                <div id="lose">YOU LOSE</div>
+                <div id="win">YOU WIN</div>
+                <button onclick="startGame()">PLAY AGAIN</button>
             </div>
         </div>
     </div>
