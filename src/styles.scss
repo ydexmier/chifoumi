@@ -10,13 +10,17 @@
 body {
   font-family: 'Barlow Semi Condensed', sans-serif;
   width: 100vw;
-  background: linear-gradient(90deg,hsl(237, 49%, 15%),hsl(214, 47%, 23%), hsl(237, 49%, 15%));
+  background: linear-gradient(180deg,hsl(214, 47%, 23%), hsl(237, 49%, 15%));
   color: $text-color;
   letter-spacing: 2px;
 
   .container {
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 46px);
     width: 315px;
     margin: 46px auto 0 auto;
+
   }
 
   .header {
@@ -29,7 +33,7 @@ body {
     .actions {
       display: flex;
       flex-direction: column;
-      color: white;
+      color: $white;
       font-size: 8px; //36
       img {
         height: 48px;
@@ -40,7 +44,7 @@ body {
       display: flex;
       align-items: center;
       flex-direction: column;
-      background: white;
+      background: $white;
       border-radius: 6px;
 
 
@@ -56,15 +60,40 @@ body {
   .picked-choice {
     display: none;
     font-size: 16px;
-    color: white;
+    color: $white;
     text-align: center;
+  }
+  button {
+    letter-spacing: 2px;
+    border-radius: 12px;
+    font-size: 18px;
   }
   #result {
     display: none;
+
+    #win, #lose {
+      display: inline-block;
+      letter-spacing: 1px;
+      font-weight: 700;
+      color: $white;
+      font-size: 48px;
+    }
+    button {
+      background-color: $white;
+      color: $text-color;
+      padding: 12px 0 12px 0;
+    }
+  }
+  #rules {
+    color: $white;
+    margin: 0 auto 50px auto;
+    border: solid 2px $header-outlined;
+    padding: 12px 40px;
   }
 
   #stepContainer {
     position: relative;
+    flex: auto;
     margin-top: 80px;
 
     $triangleLength: $sm-size - $sm-bubble-size;
@@ -105,7 +134,7 @@ body {
       display: grid;
       row-gap: 24px;
       grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr auto auto;
+      grid-template-rows: fit-content(100%) fit-content(100%) auto;
       .bubble:not(.selected) {
         display: none;
       }
@@ -139,10 +168,17 @@ body {
     }
 
     &.step-3 {
+      text-align: center;
+      button {
+        margin: 12px auto 0 auto;
+        width: 200px;
+      }
       #result {
+        display: block;
         grid-row: 3/4;
         grid-column: 1/3;
-        display: block;
+        color: $white;
+        
       }
       &:not(.win) {
         #win {
@@ -160,6 +196,8 @@ body {
 
 @media (min-width: 760px) {
   body {
+    background: linear-gradient(90deg,hsl(237, 49%, 15%),hsl(214, 47%, 23%), hsl(237, 49%, 15%));
+
     .container {
       width: 700px;
       margin: 46px auto 0 auto;
